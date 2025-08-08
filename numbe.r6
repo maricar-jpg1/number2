@@ -1,0 +1,36 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> cities = new List<string>();
+
+        Console.WriteLine(" City Organizer");
+        Console.WriteLine("Enter city names (type 'exit' to finish):");
+
+        while (true)
+        {
+            Console.Write("Enter city: ");
+            string input = Console.ReadLine().Trim();
+
+            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                break;
+
+            if (!string.IsNullOrWhiteSpace(input))
+                cities.Add(input);
+        }
+
+        var sortedCities = cities
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(city => city, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        Console.WriteLine("\n Cities in alphabetical order (no duplicates):");
+        foreach (var city in sortedCities)
+        {
+            Console.WriteLine(city);
+        }
+    }
+}
