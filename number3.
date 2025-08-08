@@ -1,0 +1,41 @@
+using System;
+using.Lingq;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> usernames = new List<string>();
+
+        Console.WriteLine("=== Username Filter ===");
+        Console.WriteLine("Enter 5 usernames:");
+
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write($"Username #{i + 1}: ");
+            string username = Console.ReadLine();
+            usernames.Add(username);
+        }
+
+        Console.Write("\nEnter a character to search: ");
+        string searchChar = Console.ReadLine().ToLower();
+
+        Console.WriteLine("\n= Matched Usernames =");
+        bool found = false;
+
+        foreach (string user in usernames)
+        {
+            if (user.ToLower().Contains(searchChar))
+            {
+                Console.WriteLine(user);
+                found = true;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("No usernames matched the search.");
+        }
+    }
+}
