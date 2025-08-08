@@ -1,0 +1,41 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> products = new List<string>();
+
+        Console.WriteLine(" Product Search Engine");
+        Console.WriteLine("Enter 8 product names:");
+
+        for (int i = 1; i <= 8; i++)
+        {
+            Console.Write($"Product #{i}: ");
+            string product = Console.ReadLine().Trim();
+            if (!string.IsNullOrWhiteSpace(product))
+                products.Add(product);
+            else
+                i--;
+        }
+
+        Console.Write("\n Enter a keyword to search: ");
+        string keyword = Console.ReadLine().Trim().ToLower();
+
+        var results = products
+            .Where(p => p.ToLower().Contains(keyword))
+            .ToList();
+
+        Console.WriteLine("\n Search Results:");
+        if (results.Count > 0)
+        {
+            foreach (var item in results)
+                Console.WriteLine(item);
+        }
+        else
+        {
+            Console.WriteLine("No products found.");
+        }
+    }
+}
