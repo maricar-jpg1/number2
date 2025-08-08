@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> numbers = new List<int>();
+
+        Console.WriteLine("Random Number Filter");
+        Console.WriteLine("Enter 10 numbers:");
+
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.Write($"Number #{i}: ");
+            if (int.TryParse(Console.ReadLine(), out int num))
+            {
+                numbers.Add(num);
+            }
+            else
+            {
+                Console.WriteLine(" Invalid input. Please enter an integer.");
+                i--;
+            }
+        }
+
+
+        List<int> filtered = numbers.Where(n => n > 50).ToList();
+
+        Console.WriteLine("\n Original Numbers:");
+        Console.WriteLine(string.Join(", ", numbers));
+        Console.WriteLine($"Count: {numbers.Count}");
+
+        Console.WriteLine("\n Numbers > 50:");
+        if (filtered.Count > 0)
+        {
+            Console.WriteLine(string.Join(", ", filtered));
+        }
+        else
+        {
+            Console.WriteLine("No numbers greater than 50.");
+        }
+        Console.WriteLine($"Count: {filtered.Count}");
+    }
+}
