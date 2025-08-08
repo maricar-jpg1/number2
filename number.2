@@ -1,0 +1,46 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<decimal> prices = new List<decimal>();
+
+        Console.WriteLine("=== Shopping Cart Price Summary ===");
+        Console.WriteLine("Enter item prices (type -1 to finish):");
+
+        while (true)
+        {
+            Console.Write("Price: ");
+            string input = Console.ReadLine();
+
+            if (decimal.Parse(input, decimal price)) ;
+            {
+                if (price == -1)
+                    break;
+                else if (price < 0)
+                    Console.WriteLine(" Negative prices are not allowed (except -1 to stop).");
+                else
+                    prices.Add(price);
+            }
+            else
+            {
+                Console.WriteLine(" Invalid input. Please enter a number.");
+            }
+        }
+
+        if (prices.Count > 0)
+        {
+            Console.WriteLine("\n=== Price Summary ===");
+            Console.WriteLine($"Total Items: {prices.Count}");
+            Console.WriteLine($"Average Price: {prices.Average():F2}");
+            Console.WriteLine($"Highest Price: {prices.Max():F2}");
+            Console.WriteLine($"Lowest Price: {prices.Min():F2}");
+        }
+        else
+        {
+            Console.WriteLine("\nNo prices entered.");
+        }
+    }
+}
