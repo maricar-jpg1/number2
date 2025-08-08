@@ -1,0 +1,46 @@
+using System;
+using Lingq;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> formattedNames = new List<string>();
+
+        Console.WriteLine(" Capitalize First Letter of Names");
+        Console.WriteLine("Enter 6 full names:");
+
+        for (int i = 1; i <= 6; i++)
+        {
+            Console.Write($"Name #{i}: ");
+            string input = Console.ReadLine().Trim();
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                i--;
+                continue;
+            }
+
+            // Split name into words
+            string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            for (int j = 0; j < parts.Length; j++)
+            {
+                string word = parts[j];
+                if (word.Length > 0)
+                {
+                    parts[j] = char.ToUpper(word[0]) + word.Substring(1).ToLower();
+                }
+            }
+
+            string formatted = string.Join(" ", parts);
+            formattedNames.Add(formatted);
+        }
+
+        Console.WriteLine("\n Formatted Names:");
+        foreach (string name in formattedNames)
+        {
+            Console.WriteLine(name);
+        }
+    }
+}
